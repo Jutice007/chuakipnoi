@@ -1,0 +1,2121 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>những điều chưa kịp nói</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    />
+    <style>
+      :root {
+        --site-primary: #263c50;
+        --site-secondary: #15232f;
+        --site-background: #0c151e;
+        --site-on-primary: #f1eee8;
+        --site-on-secondary: #d8d9d8;
+        --site-on-background: #e8e7e2;
+        /* --site-font-body: Georgia, 'Times New Roman', serif;
+            --site-font-heading: Georgia, 'Times New Roman', serif; */
+        --site-font-body: 'Lora', Georgia, serif;
+        --site-font-heading: 'Lora', Georgia, serif;
+        --site-heading-scale: 1;
+        --site-spacing-scale: 1;
+        --site-radius-scale: 1;
+        --site-decoration-opacity: 1;
+        --ink: #e8e7e2;
+        --muted: #9eabb5;
+        --line: #344653;
+        --paper: #e7dfd1;
+        --paper-ink: #252d34;
+        --banner: url('images/banner.png');
+        --hero: url('images/featured.png');
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--site-background);
+        color: var(--site-on-background);
+        font-family: var(--site-font-body);
+        line-height: 1.6;
+      }
+
+      .app {
+        min-height: 100vh;
+        background-color: var(--site-background);
+        background-image:
+          radial-gradient(ellipse at 70% 0%, #29445a 0, transparent 42%),
+          linear-gradient(180deg, #111f2c, #0b141d 62%);
+      }
+
+      a,
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      button,
+      a {
+        cursor: pointer;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      .top {
+        min-height: 340px;
+        padding: 24px clamp(20px, 5vw, 76px) 34px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid #43515c;
+        background:
+          linear-gradient(90deg, rgba(7, 15, 23, 0.94), rgba(11, 26, 39, 0.48)),
+          var(--banner) center / cover no-repeat,
+          radial-gradient(ellipse at 65% 20%, #5b7387 0, #273f54 25%, #102131 61%, #0a131c 100%);
+      }
+
+      .top:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: var(--site-decoration-opacity);
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at 78% 55%,
+          transparent 0 12%,
+          rgba(5, 12, 18, 0.4) 60%
+        );
+      }
+
+      .nav,
+      .brand,
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 25px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .nav button {
+        border: 0;
+        background: none;
+        color: #c7d0d7;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 8px 0;
+        border-bottom: 1px solid transparent;
+      }
+
+      .nav button.active,
+      .nav button:hover {
+        color: #fff;
+        border-color: #b8c6d0;
+      }
+
+      .brand {
+        position: absolute;
+        left: clamp(20px, 5vw, 76px);
+        top: 70px;
+      }
+
+      .brand .script {
+        font-style: italic;
+        font-size: clamp(2.2rem, 5vw, 4.3rem);
+        line-height: 1.04;
+        max-width: 440px;
+        letter-spacing: -0.04em;
+      }
+
+      .eyebrow {
+        font:
+          0.68rem/1.5 Arial,
+          sans-serif;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #a9b7c1;
+        margin-top: 20px;
+      }
+
+      .hero-copy {
+        position: absolute;
+        right: clamp(20px, 7vw, 110px);
+        bottom: 42px;
+        width: min(300px, 40%);
+        font-style: italic;
+        color: #d7dbe0;
+        font-size: 1rem;
+        transform: rotate(-2deg);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 205px minmax(0, 1fr) 230px;
+        max-width: 1440px;
+        margin: auto;
+        border-bottom: 1px solid var(--line);
+      }
+
+      aside {
+        padding: 26px 20px;
+        border-right: 1px solid var(--line);
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      aside.right {
+        border-right: 0;
+        border-left: 1px solid var(--line);
+      }
+
+      .side-nav {
+        display: grid;
+        gap: 8px;
+      }
+
+      .side-nav button {
+        text-align: left;
+        border: 0;
+        background: none;
+        padding: 7px 4px;
+        color: #bac4cc;
+      }
+
+      .side-nav button:hover {
+        color: #fff;
+        transform: translateX(3px);
+      }
+
+      .side-nav span {
+        display: inline-block;
+        width: 25px;
+        color: #8ea3b4;
+      }
+
+      .side-title {
+        margin: 30px 0 12px;
+        color: #e2e4e3;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      .tiny-card {
+        padding: 8px;
+        background: var(--paper);
+        color: var(--paper-ink);
+        transform: rotate(-2deg);
+        box-shadow: 0 8px 20px #0004;
+        margin: 22px 3px;
+      }
+
+      .tiny-scene {
+        height: 90px;
+        background: linear-gradient(180deg, #455d72, #172a3a 62%, #0d1924);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tiny-scene:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          100deg,
+          transparent 0 11px,
+          #c7d6e522 12px,
+          transparent 13px 20px
+        );
+      }
+
+      .post-art:has(img):before,
+      .tiny-scene:has(img):after,
+      .avatar:has(img):after {
+        display: none;
+      }
+
+      .tiny-scene img,
+      .avatar img,
+      .post-art img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .modal-img {
+        display: block;
+        width: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        margin: 0 0 18px;
+      }
+
+      .tiny-card p {
+        font-size: 0.78rem;
+        text-align: center;
+        font-style: italic;
+        margin: 8px 0 2px;
+      }
+
+      .search {
+        display: flex;
+        border: 1px solid #415461;
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .search input {
+        width: 100%;
+        min-width: 0;
+        background: transparent;
+        border: 0;
+        color: #fff;
+        padding: 10px 12px;
+        font-size: 0.8rem;
+        outline: none;
+      }
+
+      .search button {
+        background: none;
+        border: 0;
+        padding: 0 12px;
+      }
+
+      .categories {
+        display: grid;
+        gap: 6px;
+      }
+
+      .categories button,
+      .tag {
+        background: none;
+        border: 0;
+        color: #aab6bf;
+        text-align: left;
+        font-size: 0.82rem;
+        padding: 3px;
+      }
+
+      .categories button:hover,
+      .tag:hover {
+        color: #fff;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        border: 1px solid #3c4b58;
+        border-radius: 20px;
+        padding: 4px 8px;
+        font-size: 0.72rem;
+      }
+
+      .main {
+        padding: 26px clamp(16px, 2vw, 30px) 42px;
+        min-width: 0;
+      }
+
+      .page {
+        display: none;
+        animation: fade 0.3s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.3;
+          transform: translateY(5px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 2px 0 22px;
+      }
+
+      .section-heading h1 {
+        font-size: 1.75rem;
+        font-weight: normal;
+        font-style: italic;
+        margin: 0;
+      }
+
+      .section-heading:after {
+        content: '';
+        height: 1px;
+        background: var(--line);
+        flex: 1;
+      }
+
+      .featured {
+        position: relative;
+        min-height: 300px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        border: 1px solid #61707a;
+        background:
+          linear-gradient(0deg, rgba(5, 12, 18, 0.92), transparent 75%),
+          var(--hero) center / cover no-repeat,
+          radial-gradient(ellipse at 75% 30%, #647b8b, #273f53 35%, #111e2b 72%);
+        margin-bottom: 28px;
+      }
+
+      .featured:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #07121c99, transparent);
+      }
+
+      .featured-content {
+        position: relative;
+        padding: 25px;
+        max-width: 560px;
+      }
+
+      .pill {
+        display: inline-block;
+        border: 1px solid #8d9ca7;
+        border-radius: 20px;
+        padding: 2px 9px;
+        font:
+          0.65rem Arial,
+          sans-serif;
+        letter-spacing: 0.1em;
+        color: #d2dbe0;
+      }
+
+      .featured h2 {
+        font-weight: normal;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        line-height: 1.15;
+        margin: 13px 0;
+      }
+
+      .featured p {
+        color: #c5cdd2;
+        font-size: 0.9rem;
+      }
+
+      .meta {
+        font:
+          0.68rem Arial,
+          sans-serif;
+        color: #9eabb5;
+        letter-spacing: 0.06em;
+      }
+
+      .read {
+        border: 0;
+        border-bottom: 1px solid #8da0ad;
+        background: none;
+        padding: 5px 0;
+        margin-top: 7px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .pager {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 34px 0 6px;
+        flex-wrap: wrap;
+      }
+
+      .pager button {
+        min-width: 40px;
+        height: 40px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        background: rgba(15, 28, 40, 0.6);
+        color: var(--muted);
+        border-radius: 2px;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .pager button:hover:not(:disabled) {
+        border-color: #8da0ad;
+        color: var(--site-on-background);
+      }
+
+      .pager button.active {
+        background: var(--paper);
+        color: var(--paper-ink);
+        border-color: var(--paper);
+        box-shadow: 0 5px 14px #0005;
+      }
+
+      .pager button:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      .post-card {
+        background: var(--paper);
+        color: var(--paper-ink);
+        padding: 9px 9px 12px;
+        box-shadow: 0 9px 22px #0004;
+        transform: rotate(-0.4deg);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        cursor: pointer;
+      }
+
+      .post-card:nth-child(2n) {
+        transform: rotate(0.5deg);
+      }
+
+      .post-card:hover {
+        transform: translateY(-4px) rotate(0);
+        box-shadow: 0 14px 25px #0006;
+      }
+
+      .post-art {
+        height: 125px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(180deg, #64798a, #20364a 55%, #0b1722);
+      }
+
+      .post-art:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          100deg,
+          transparent 0 14px,
+          #d9e5ed27 15px,
+          transparent 16px 25px
+        );
+      }
+
+      .post-art.sunset {
+        background: linear-gradient(180deg, #8994a2, #c08d88 42%, #334d62 68%, #111d29);
+      }
+
+      .post-art.paper {
+        background: linear-gradient(135deg, #c7bca9, #f0e5d1 48%, #6e7d81);
+      }
+
+      .post-art.sea {
+        background: linear-gradient(180deg, #8294a0, #425d70 45%, #132536 46%, #091723);
+      }
+
+      .post-art.window {
+        background: linear-gradient(
+          90deg,
+          #101a25 0 20%,
+          #5a7180 21% 23%,
+          #1e3548 24% 76%,
+          #5b6e7b 77% 79%,
+          #101a25 80%
+        );
+      }
+
+      .post-art:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 45%;
+        background: linear-gradient(0deg, #08131cbb, transparent);
+      }
+
+      .post-card .pill {
+        border-color: #a3a29a;
+        color: #46515a;
+        font-size: 0.58rem;
+      }
+
+      .post-card h3 {
+        font-weight: normal;
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin: 8px 0;
+      }
+
+      .post-card p {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        margin: 0 0 12px;
+        color: #525b61;
+      }
+
+      .post-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font:
+          0.65rem Arial,
+          sans-serif;
+        color: #6d7479;
+      }
+
+      .about-box {
+        border: 1px solid var(--line);
+        padding: clamp(20px, 4vw, 42px);
+        background: linear-gradient(140deg, #1b2b39, #101c27);
+        position: relative;
+      }
+
+      .about-box h2 {
+        font-size: 2rem;
+        font-weight: normal;
+        font-style: italic;
+      }
+
+      .about-box p {
+        max-width: 650px;
+        color: #c2cbd1;
+      }
+
+      .signature {
+        font-style: italic;
+        text-align: right;
+        color: #b7c2ca;
+        margin-top: 25px;
+      }
+
+      .me-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .me-photo {
+        position: relative;
+        /* aspect-ratio: 3/4; */
+        aspect-ratio: 840/1386;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #7b8d9a, #2b4356 55%, #0c1822);
+      }
+
+      .me-photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .me-info {
+        padding: 24px;
+        background: linear-gradient(145deg, #203547, #101a24);
+        border: 1px solid var(--line);
+      }
+
+      .me-info h2 {
+        font-weight: normal;
+        font-size: 1.8rem;
+        margin: 10px 0;
+      }
+
+      .me-info p {
+        color: #bdc8d0;
+      }
+
+      .me-list {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 10px 14px;
+        margin: 18px 0 0;
+        font-size: 0.95rem;
+      }
+
+      .me-list dt {
+        color: #8d9ca7;
+        font:
+          0.72rem Arial,
+          sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding-top: 3px;
+      }
+
+      .me-list dd {
+        margin: 0;
+        color: #e3eaee;
+      }
+
+      .me-list a {
+        color: #c6d5df;
+        border-bottom: 1px dotted #718494;
+        text-decoration: none;
+      }
+
+      .me-list a:hover {
+        color: #fff;
+      }
+
+      .stamps {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 14px 18px;
+        margin-top: 22px;
+      }
+
+      .stamp.stamp-2 {
+        max-width: 250px;
+        transform: rotate(1.5deg);
+        margin-top: 10px;
+      }
+
+      .stamp {
+        display: inline-block;
+        max-width: 300px;
+        padding: 8px;
+        transform: rotate(-1.5deg);
+        background: radial-gradient(circle at 5px 5px, transparent 3.5px, #d9e0e4 4px) -5px -5px /
+          10px 10px;
+        filter: drop-shadow(0 3px 8px #0006);
+      }
+
+      .stamp-in {
+        background: #d9e0e4;
+        color: #1c2b37;
+        padding: 14px 16px;
+        border: 1px dashed #8d9ca7;
+      }
+
+      .stamp-in small {
+        display: block;
+        font:
+          0.6rem Arial,
+          sans-serif;
+        letter-spacing: 0.14em;
+        color: #5d6f7c;
+      }
+
+      .stamp-in p {
+        margin: 8px 0;
+        font-size: 0.88rem;
+        font-style: italic;
+        line-height: 1.6;
+        color: #1c2b37;
+      }
+
+      .stamp-in span {
+        display: block;
+        text-align: right;
+        font-size: 0.8rem;
+        color: #3c4f5d;
+      }
+
+      .right-profile {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .avatar {
+        flex: 0 0 70px;
+        height: 88px;
+        background: linear-gradient(180deg, #7b8d9a, #2b4356 55%, #0c1822);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .avatar:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          100deg,
+          transparent 0 12px,
+          #e4edf322 13px,
+          transparent 14px 22px
+        );
+      }
+
+      .right p {
+        font-size: 0.82rem;
+        color: #aeb9c1;
+      }
+
+      .player {
+        border: 1px dashed #647784;
+        padding: 14px;
+        background: rgba(10, 20, 30, 0.45);
+      }
+
+      .np {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .np-title {
+        font-style: italic;
+        color: #e2e4e3;
+        font-size: 0.95rem;
+        line-height: 1.3;
+      }
+
+      .player small {
+        display: block;
+        color: #8796a2;
+        font:
+          0.68rem Arial,
+          sans-serif;
+        margin-top: 2px;
+      }
+
+      .eq {
+        display: flex;
+        gap: 2px;
+        align-items: flex-end;
+        height: 18px;
+        width: 14px;
+        flex: none;
+      }
+
+      .eq i {
+        width: 3px;
+        height: 4px;
+        background: #8da0ad;
+        display: block;
+      }
+
+      .eq.on i {
+        animation: eq 1s infinite ease-in-out;
+      }
+
+      .eq.on i:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .eq.on i:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes eq {
+        0%,
+        100% {
+          height: 4px;
+        }
+
+        50% {
+          height: 16px;
+        }
+      }
+
+      .bar {
+        height: 6px;
+        background: #2a3b49;
+        margin: 14px 0;
+        cursor: pointer;
+      }
+
+      .bar div {
+        height: 100%;
+        width: 0;
+        background: var(--paper);
+      }
+
+      .ctrl {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .ctrl button {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--line);
+        background: none;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        color: #d2d7da;
+        flex: none;
+      }
+
+      .ctrl button:hover {
+        border-color: #8da0ad;
+      }
+
+      .ctrl #playBtn {
+        background: var(--paper);
+        color: var(--paper-ink);
+        border-color: var(--paper);
+      }
+
+      .ctrl svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+      }
+
+      .ctrl input {
+        flex: 1;
+        min-width: 0;
+        margin-left: 6px;
+        accent-color: #e7dfd1;
+      }
+
+      .np-msg {
+        display: none;
+        font-size: 0.7rem;
+        color: #d0a393;
+        margin-top: 10px;
+        line-height: 1.45;
+      }
+
+      .playlist {
+        list-style: none;
+        margin: 14px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 2px;
+      }
+
+      .playlist button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 6px;
+        text-align: left;
+        border: 0;
+        background: none;
+        padding: 6px 4px;
+        font-size: 0.8rem;
+        color: #aab6bf;
+      }
+
+      .playlist button:hover {
+        color: #fff;
+      }
+
+      .playlist button.active {
+        color: var(--paper);
+        background: rgba(231, 223, 209, 0.08);
+      }
+
+      .recent {
+        display: grid;
+        gap: 13px;
+      }
+
+      .recent button {
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: 10px;
+        text-align: left;
+        border: 0;
+        background: none;
+        color: #d2d7da;
+        padding: 0;
+        font-size: 0.82rem;
+      }
+
+      .thumb {
+        height: 54px;
+        background: linear-gradient(180deg, #5a7284, #172a3b);
+      }
+
+      .recent small {
+        display: block;
+        color: #8796a2;
+        font:
+          0.65rem Arial,
+          sans-serif;
+        margin-top: 4px;
+      }
+
+      .quote {
+        border: 1px dashed #647784;
+        padding: 17px;
+        font-style: italic;
+        color: #c3cbd0;
+        transform: rotate(-1deg);
+        margin-top: 28px;
+      }
+
+      .footer {
+        padding: 22px;
+        text-align: center;
+        color: #7e8e9a;
+        font:
+          0.7rem Arial,
+          sans-serif;
+        letter-spacing: 0.13em;
+      }
+
+      .footer span {
+        color: #b5c1ca;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: #02080edb;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 10;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-inner {
+        max-width: 640px;
+        width: 100%;
+        max-height: 90vh;
+        overflow: auto;
+        background: #e7dfd1;
+        color: #28333b;
+        padding: clamp(22px, 5vw, 42px);
+        position: relative;
+        box-shadow: 0 20px 80px #0008;
+      }
+
+      .modal-inner h2 {
+        font-weight: normal;
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+
+      .modal-inner p {
+        line-height: 1.8;
+      }
+
+      .close {
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        border: 0;
+        background: none;
+        color: #27343d;
+        font-size: 1.5rem;
+      }
+
+      .empty {
+        padding: 30px;
+        text-align: center;
+        color: #aebac2;
+        border: 1px dashed #425463;
+        display: none;
+      }
+
+      @media (max-width: 1000px) {
+        .layout {
+          grid-template-columns: 170px minmax(0, 1fr);
+        }
+
+        aside.right {
+          display: none;
+        }
+
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 650px) {
+        .top {
+          min-height: 300px;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          gap: 15px;
+        }
+
+        .nav button {
+          font-size: 0.68rem;
+        }
+
+        .brand {
+          top: 90px;
+        }
+
+        .brand .script {
+          font-size: 2.6rem;
+        }
+
+        .hero-copy {
+          right: 20px;
+          bottom: 18px;
+          font-size: 0.83rem;
+          width: 220px;
+        }
+
+        .layout {
+          display: block;
+        }
+
+        .layout aside.left {
+          display: none;
+        }
+
+        .main {
+          padding: 22px 16px 35px;
+        }
+
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .post-art {
+          height: 100px;
+        }
+
+        .me-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .me-list {
+          grid-template-columns: 90px 1fr;
+        }
+
+        .me-photo {
+          max-width: 220px;
+        }
+
+        .featured {
+          min-height: 300px;
+        }
+
+        .section-heading h1 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .post-art {
+          height: 140px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app" id="app">
+      <header class="top">
+        <nav class="nav" aria-label="Điều hướng">
+          <button class="active" data-page="home">Trang chủ</button
+          ><button data-page="posts">Bài viết</button><button data-page="about">Giới thiệu</button
+          ><button data-page="me">Về mình</button>
+        </nav>
+        <div class="brand">
+          <div class="script">những điều<br />chưa kịp nói.</div>
+          <div class="eyebrow">Personal blog · Postcard · 2026</div>
+        </div>
+        <div class="hero-copy">
+          “Có những người đi qua đời mình như một cơn mưa… đến rồi đi, để lại trong tim một khoảng
+          trống không thể lấp đầy.”
+        </div>
+      </header>
+      <div class="layout">
+        <aside class="left">
+          <nav class="side-nav">
+            <button data-page="home"><span>⌂</span>Trang chủ</button
+            ><button data-page="posts"><span>▤</span>Bài viết</button
+            ><button data-page="about"><span>♧</span>Giới thiệu</button
+            ><button data-page="me"><span>✦</span>Về mình</button>
+          </nav>
+          <div class="tiny-card">
+            <div class="tiny-scene">
+              <img src="images/khung-trai.jpg" alt="" onerror="this.remove()" />
+            </div>
+            <p>Buồn một chút,<br />để biết bản thân mình<br />vẫn còn cảm xúc.</p>
+          </div>
+          <div class="side-title">Tìm kiếm</div>
+          <form class="search" id="searchForm">
+            <input id="searchInput" placeholder="Nhập từ khóa…" aria-label="Tìm bài viết" /><button
+              aria-label="Tìm"
+            >
+              ⌕
+            </button>
+          </form>
+          <div class="side-title">Danh mục</div>
+          <div class="categories" id="catList"></div>
+          <div class="side-title">Tags</div>
+          <div class="tags" id="tagList"></div>
+        </aside>
+        <main class="main">
+          <section class="page active" id="page-home">
+            <div class="featured">
+              <div class="featured-content">
+                <span class="pill">TÂM TRẠNG</span>
+                <h2>Cuộc sống của,<br />anh…</h2>
+                <p>Sao lại phải chịu đựng những điều này? Người ta đã rời đi rồi mà..</p>
+                <div class="meta">1.11.2026　·　23:06　·　12 phút đọc</div>
+                <button class="read" data-article="0">Đọc tiếp　→</button>
+              </div>
+            </div>
+            <div class="section-heading">
+              <h1>Bài viết gần đây</h1>
+            </div>
+            <div class="cards" id="homeCards"></div>
+          </section>
+          <section class="page" id="page-posts">
+            <div class="section-heading">
+              <h1 id="postsHeading">Những tấm postcard</h1>
+            </div>
+            <p style="color: var(--muted); margin-top: -12px; margin-bottom: 22px">
+              Mỗi bài viết là một tấm bưu thiếp gửi kèm với cảm xúc về một ngày cũ. Chọn một tấm để
+              đọc chậm hơn.
+            </p>
+            <div class="cards" id="allCards"></div>
+            <nav class="pager" id="pager" aria-label="Phân trang"></nav>
+            <div class="empty" id="emptyState">
+              Không tìm thấy tấm postcard nào phù hợp. Thử một từ khóa khác nhé.
+            </div>
+          </section>
+          <section class="page" id="page-about">
+            <div class="section-heading">
+              <h1>Giới thiệu</h1>
+            </div>
+            <div class="about-box">
+              <span class="pill">MỘT GÓC NHỎ CỦA BẢN THÂN</span>
+              <h2>Chào bạn,<br />cảm ơn vì đã ở lại.</h2>
+              <p>
+                Mình tạo ra nơi này để cất những điều chưa biết nói cùng ai — vài sự tiêu cực, nhiều
+                ký ức cũ, những ngày trời mưa, những người đã từng rất thân và cả những phiên bản tệ
+                hại của chính mình mà mình đang học cách chấp nhận.
+              </p>
+              <p>
+                Đây không phải nơi để níu kéo một người. Chỉ là một góc nhỏ chắc để nhớ rằng những
+                gì từng đẹp đẽ vẫn xứng đáng được lưu giữ, ngay cả khi nó đã kết thúc.
+              </p>
+              <p>
+                Ở đây, bạn sẽ tìm thấy những dòng nhật ký ngắn, những tấm postcard buồn và đôi khi
+                là một chút dịu dàng dành cho những ngày chưa ổn.
+              </p>
+              <p>
+                Nếu bạn cũng đang mang theo một câu chuyện chưa có đoạn kết, hy vọng bạn sẽ thấy
+                mình không đơn độc.
+              </p>
+              <div class="signature">— người viết, 1007♡</div>
+            </div>
+            <div class="quote">
+              “Có thể đã có nhiều cơ hội được trao cho bản thân, chỉ là không biết nắm bắt nên họ
+              không còn muốn quay về.”
+            </div>
+          </section>
+          <section class="page" id="page-me">
+            <div class="section-heading">
+              <h1>Về mình</h1>
+            </div>
+            <div class="me-grid">
+              <div class="me-photo">
+                <img src="images/me.png" alt="Ảnh đại diện" onerror="this.remove()" />
+              </div>
+              <div class="me-info">
+                <span class="pill">THÔNG TIN</span>
+                <h2>1007♡</h2>
+                <p>Đang cố gắng chăm sóc cảm xúc của bản thân.</p>
+                <dl class="me-list">
+                  <dt>Tên</dt>
+                  <dd>Nguyễn Thành</dd>
+                  <dt>Sinh nhật</dt>
+                  <dd>09/10</dd>
+                  <dt>Nơi ở</dt>
+                  <dd>Khánh Hòa</dd>
+                  <dt>Instagram</dt>
+                  <dd>
+                    <a href="https://www.instagram.com/loiw.0910/" target="_blank" rel="noopener"
+                      >instagram.com/loiw.0910</a
+                    >
+                  </dd>
+                  <dt>Facebook</dt>
+                  <dd>
+                    <a href="https://www.facebook.com/Justice.0910" target="_blank" rel="noopener"
+                      >facebook.com/Justice.0910</a
+                    >
+                  </dd>
+                </dl>
+                <div class="stamps">
+                  <div class="stamp">
+                    <div class="stamp-in">
+                      <small>POSTCARD · 2026</small>
+                      <p>
+                        Cảm ơn vì đã ghé qua.<br />Nếu hôm nay trời mưa, mong bạn có một nơi để
+                        trú.<br />Còn mình, mình ở đây, viết nốt những điều chưa kịp nói.
+                      </p>
+                      <span>— 1007♡</span>
+                    </div>
+                  </div>
+                  <div class="stamp stamp-2">
+                    <div class="stamp-in">
+                      <small>THÊM MỘT NGÀY NỮA</small>
+                      <p>
+                        Có những điều không cần nói hết.<br />Chỉ cần nhớ rằng, đã từng có những
+                        thời gian rất đẹp.
+                      </p>
+                      <span>— 1007♡</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <aside class="right">
+          <div class="side-title" style="margin-top: 0">Đôi lời</div>
+          <div class="right-profile">
+            <div class="avatar">
+              <img src="images/VintageDou.png" alt="Ảnh đại diện" onerror="this.remove()" />
+            </div>
+            <p>
+              Mình là một người thích những điều hạnh phúc, thích mưa, thích những bản nhạc buồn và
+              có một chuyện đã từng hạnh phúc.
+            </p>
+          </div>
+          <p>
+            Blog này là nơi mình lưu giữ những suy nghĩ, những cảm xúc… và cả những điều chưa kịp
+            nói.
+          </p>
+          <div class="signature">Lời ♡</div>
+          <div class="side-title">Nghe cùng mình</div>
+          <div class="player" id="player">
+            <div class="np">
+              <span class="eq" id="eq"><i></i><i></i><i></i></span>
+              <div>
+                <div class="np-title" id="npTitle">…</div>
+                <small id="npArtist"></small>
+              </div>
+            </div>
+            <div class="bar" id="bar">
+              <div id="barFill"></div>
+            </div>
+            <div class="ctrl">
+              <button id="prevBtn" aria-label="Bài trước"></button
+              ><button id="playBtn" aria-label="Phát / dừng"></button
+              ><button id="nextBtn" aria-label="Bài sau"></button
+              ><input
+                type="range"
+                id="vol"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.6"
+                aria-label="Âm lượng"
+              />
+            </div>
+            <div class="np-msg" id="npMsg"></div>
+            <ol class="playlist" id="playlist"></ol>
+            <audio id="audio" preload="auto"></audio>
+          </div>
+          <div class="quote">Không phải chỉ có mình anh biết hứa…</div>
+        </aside>
+      </div>
+      <footer class="footer">
+        những điều chưa kịp nói　·　<span>Personal Blog</span>　·　2026
+      </footer>
+    </div>
+    <div
+      class="modal"
+      id="articleModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <article class="modal-inner">
+        <button class="close" id="closeModal" aria-label="Đóng">×</button
+        ><span class="pill" id="modalCategory">POSTCARD</span>
+        <h2 id="modalTitle"></h2>
+        <div class="meta" id="modalMeta"></div>
+        <img class="modal-img" id="modalImg" alt="" hidden />
+        <div id="modalBody"></div>
+        <p style="font-style: italic; text-align: right">— một lá thư không gửi</p>
+      </article>
+    </div>
+    <script>
+      const posts = [
+        {
+          title: 'Có những ngày, chỉ muốn quay lại làm người cũ của nhau…',
+          cat: 'Tâm trạng',
+          date: '11.10.2026',
+          time: '21:36',
+          read: '10 phút đọc',
+          art: 'rain',
+          tags: ['người cũ', 'nỗi nhớ', 'mưa'],
+          excerpt: 'Nếu ngày đó mình không buông tay, liệu mọi chuyện sẽ khác chứ?',
+          body:
+            'Có những ngày, mình tự hỏi nếu ngày đó mình không buông tay, mọi chuyện sẽ khác ' +
+            'chứ?\n\nRồi mình nhận ra, có lẽ cả hai đã cố gắng theo cách mà mình biết. Chỉ là từ lúc ' +
+            'ban đầu đã không hiểu được mong muốn thương của nhau không như kỳ vọng của bản thân nên dù ' +
+            'thương đến đâu cũng không thể nguyên vẹn được\n\nMình không viết những dòng này để mong cô ' +
+            'ấy quay lại. Mình chỉ muốn đặt nỗi nhớ, một mong muốn xuống đây. Để ngày nào đó mở ra, ' +
+            'mình có thể mỉm cười và nói: " mình đã từng thương một người nhiều đến thế."',
+        },
+        {
+          title: 'Những con đường chúng ta từng đi qua',
+          cat: 'Ký ức',
+          date: '26.10.2026',
+          time: '23:12',
+          read: '5 phút đọc',
+          art: 'rain',
+          tags: ['hồi ức', 'người cũ'],
+          excerpt: 'Có những con đường, dù đã rất lâu, vẫn khiến tui nhớ về một người.',
+          body:
+            'Thành phố vẫn vậy, chỉ có người đã từng đi cạnh mình là không còn nữa. Quán cũ vẫn mở, con ' +
+            'đường vẫn đông, đèn giao thông vẫn chuyển màu đúng lúc.\n\nChỉ là mỗi lần đi ngang, không ' +
+            'còn một cái tên để gọi, không còn người đằng sau xe, không còn vòng tay hay giọng nói ấy. ' +
+            'Hóa ra ký ức không nằm ở nơi chốn, mà nằm trong cách bản thân anh từng nhìn nơi ấy cùng ' +
+            'một người.',
+        },
+        {
+          title: 'Gửi người từng thương',
+          cat: 'Tình yêu',
+          date: '22.10.2026',
+          time: '00:41',
+          read: '7 phút đọc',
+          art: 'sunset',
+          tags: ['người cũ', 'tình yêu dang dở'],
+          excerpt:
+            'Mình không còn mong đợi một cơ hội cho bản thân nữa . Chỉ là đôi khi, mình vẫn nhớ.',
+          body:
+            'Gửi cô, người từng là điều đầu tiên mình muốn kể sau một ngày dài.\n\nMình không còn đợi ' +
+            'cô quay lại. Nhưng đôi khi, một bài hát cũ vang lên, một cơn mưa ghé ngang, mình vẫn nhớ ' +
+            'đến cậu. Có những người sẽ luôn có một chỗ nhỏ trong ký ức, dù họ không còn ở trong cuộc ' +
+            'đời mình. Chỉ là anh không còn được xuất hiện trong những dự định của cô từng kể.',
+        },
+        {
+          title: 'Lá thư không gửi',
+          cat: 'Nhật ký',
+          date: '18.10.2026',
+          time: '22:25',
+          read: '6 phút đọc',
+          art: 'paper',
+          tags: ['nỗi nhớ', 'hồi ức'],
+          excerpt: 'Có nhiều lời, mình đã viết ra nhưng chưa từng đủ dũng khí để gửi đi.',
+          body:
+            'Mình đã viết những lá thư này nhiều lần. Lần nào cũng bắt đầu bằng câu “Dạo này cậu thế ' +
+            'nào?” rồi lại xóa đi.\n\nCó lẽ mình không cần câu trả lời nữa. Điều mình cần là can đảm để ' +
+            'thừa nhận rằng đã có một khoảng thời gian mình rất buồn, rất nhớ, và không biết phải đặt ' +
+            'những cảm xúc đó ở đâu.\n\nVậy nên mình viết ra, gấp lại, và để nó ở đây. Không gửi đi ' +
+            'cũng được.',
+        },
+        {
+          title: 'Lặng lẽ là một kiểu mạnh mẽ',
+          cat: 'Tâm trạng',
+          date: '14.10.2026',
+          time: '20:58',
+          read: '4 phút đọc',
+          art: 'sea',
+          tags: ['chữa lành', 'nỗi nhớ'],
+          excerpt:
+            'Không phải ai cũng hiểu được khi mình im lặng. Nhưng đôi khi, đó là cách tốt nhất để bảo vệ bản thân.',
+          body:
+            'Có những ngày mình không muốn giải thích. Không phải vì hết điều để nói, mà vì đã mệt với ' +
+            'việc cố gắng để được hiểu. Tạo mọi thứ để thu hút sự chú ý của cô.\n\nVà giờ mình học cách ' +
+            'im lặng mà không tự trách, học cách nghỉ ngơi mà bằng sự chấp nhận. Có lẽ mạnh mẽ không ' +
+            'phải lúc nào cũng là bước tiếp thật nhanh. Đôi khi, chỉ là cho phép mình chậm lại.',
+        },
+        {
+          title: 'Thành phố vẫn mưa',
+          cat: 'Cuộc sống',
+          date: '10.10.2026',
+          time: '02:07',
+          read: '5 phút đọc',
+          art: 'window',
+          tags: ['mưa', 'chữa lành'],
+          excerpt: 'Dù đã quen với những cơn mưa, đôi lúc mình vẫn muốn có ai đó ngồi cạnh.',
+          body:
+            'Mưa làm thành phố dịu lại, hoặc có lẽ chỉ làm rõ những suy nghĩ trong mình. Mình đi trên ' +
+            'đường mưa đấy, vẫn chiếc áo mưa đấy.\n\nCó những khoảng trống không cần lấp đầy ngay. Cứ ' +
+            'để gió đi qua, để mưa rơi hết, rồi ngày mai mình lại thử tìm cách nói chuyện với cô ấy ' +
+            'thêm một lần nữa.',
+        },
+        {
+          title: 'Thay vì hỏi “có thể quay lại không?”',
+          cat: 'Tình yêu',
+          date: '06.10.2026',
+          time: '23:49',
+          read: '6 phút đọc',
+          art: 'sunset',
+          tags: ['tình yêu dang dở', 'chữa lành'],
+          excerpt:
+            'Giờ đây, mình chỉ muốn biết liệu cả hai có thể bình yên, dù không còn bên nhau.',
+          body:
+            'Đã từng có lúc mình chỉ muốn biết liệu chúng ta có thể quay lại không. Mình tìm dấu hiệu ' +
+            'trong những điều nhỏ nhất, hy vọng từ một câu nói vu vơ, để ý mọi hành động của cô.\n\nBây ' +
+            'giờ mình muốn hỏi một câu khác: liệu mình có thể bình yên không khi quay về không, kể cả ' +
+            'khi câu trả lời là không? Mình nghĩ mình vẫn muốn thử làm cô ấy hạnh phúc lần nữa, từng ' +
+            'chút một. Bằng sự trân trọng, vứt đi thứ thiếu quyết đoán, lưỡng lự và cái tôi cao',
+        },
+        {
+          title: 'Một ngày mình ổn hơn',
+          cat: 'Nhật ký',
+          date: '02.10.2026',
+          time: '19:22',
+          read: '3 phút đọc',
+          art: 'paper',
+          tags: ['chữa lành'],
+          excerpt: 'Hôm nay nỗi buồn vẫn ở đó, chỉ là nó không còn chiếm hết căn phòng.',
+          body:
+            'Hôm nay mình vẫn như mọi ngày, thức dậy mở điện thoại lên, vẫn hi vọng đầu tiên là tin ' +
+            'nhắn từ cô ấy.\n\nVô check từng nơi của cô ấy với một người mới, và thấy nụ cười của cô ấy ' +
+            'vẫn đang hạnh phúc bên anh ấy. Cũng buồn cũng vui, buồn vì mình bỏ lại, vui vì được thấy ' +
+            'lại nụ cười đó sau 4 năm cô ấy từng quen mình.',
+        },
+        {
+          title: 'Chờ một người không về',
+          cat: 'Tâm trạng',
+          date: '15.10.2026',
+          time: '22:47',
+          read: '2 phút đọc',
+          art: 'rain',
+          tags: ['chờ đợi', 'người cũ', 'nỗi nhớ'],
+          excerpt: 'Cứ nghĩ chỉ cần chờ thêm một chút nữa thôi, biết đâu em sẽ quay về.',
+          body:
+            'Cứ nghĩ chỉ cần chờ thêm một chút nữa thôi, biết đâu em sẽ quay về. Anh cứ nuôi hy vọng ' +
+            'rằng rồi một ngày nào đó, em sẽ nhớ đến anh như cách anh vẫn nhớ về em.\n\nĐợi mãi, điện ' +
+            'thoại vẫn im lặng, còn em thì chưa một lần ngoảnh lại. Thời gian cứ trôi, chỉ có anh vẫn ' +
+            'đứng yên ở nơi chúng ta từng bắt đầu.\n\nGiờ thì, người mãi chẳng thể buông bỏ chỉ có anh, ' +
+            'còn người anh hết lòng chờ đợi đã chẳng còn muốn quay về. Đau nhất là vẫn đợi một người, ' +
+            'trong khi người ấy đã chẳng còn cần nữa.',
+        },
+        {
+          title: 'Vòng lặp bản thân',
+          cat: 'Tâm trạng',
+          date: '20.10.2026',
+          time: '01:13',
+          read: '1 phút đọc',
+          art: 'window',
+          tags: ['nỗi nhớ', 'quên một người'],
+          excerpt: 'Mất bao lâu để quên một người nhỉ. 1 tháng, 6 tháng, 1 năm hay nhiều năm.',
+          body:
+            'Mất bao lâu để quên một người nhỉ. 1 tháng, 6 tháng, 1 năm hay nhiều năm.\n\nMình không ' +
+            'biết nữa, mình chỉ biết là bản thân lại rơi vào vòng lặp đấy một lần nữa, đã lâu lắm rồi ' +
+            'mà mình vẫn không thể quên được một người.',
+        },
+        {
+          title: 'Xin đừng chúc anh hạnh phúc',
+          cat: 'Tình yêu',
+          date: '16.10.2026',
+          time: '23:30',
+          read: '3 phút đọc',
+          art: 'sunset',
+          tags: ['tình yêu dang dở', 'người cũ', 'buông bỏ'],
+          excerpt: 'Đừng chúc anh hạnh phúc, cũng đừng khuyên anh tìm người mới tốt hơn mà yêu.',
+          body:
+            'Đừng chúc anh hạnh phúc, cũng đừng khuyên anh tìm người mới tốt hơn mà yêu, vì sau sự rời ' +
+            'đi đó, trái tim chẳng muốn để yêu một ai nhiều như vậy nữa.\n\nCho dù có bước tiếp, thì ' +
+            'đương nhiên người đó sẽ mang chút dáng vẻ, giọng nói, gương mặt, tính cách, ít nhiều đều ' +
+            'có phần giống em, sẽ tội lắm nếu ở bên họ mà chỉ nghĩ đến bóng hình của người, tội họ, và ' +
+            'cũng tội cho anh.\n\nVì anh hiểu rất rõ, chỉ cần nhận được một chút hi vọng nhỏ bé từ em, ' +
+            'anh sẽ khó có thể rời đi, cho nên em mới dứt khoát đến thế, anh hiểu hết tất cả mà, nhưng ' +
+            'lòng vẫn đau không tả nổi.',
+        },
+        {
+          title: 'Kẻ ở lại ôm hạnh phúc',
+          cat: 'Tâm trạng',
+          date: '12.10.2026',
+          time: '00:52',
+          read: '1 phút đọc',
+          art: 'sea',
+          tags: ['tổn thương', 'người cũ'],
+          excerpt:
+            'Khi đang còn loay hoay với đống cảm xúc vụn vỡ, thì người mình thương hết lòng…',
+          body: 'Khi đang còn loay hoay với đống cảm xúc vụn vỡ, thì người mình thương hết lòng đã dành tình cảm cho một người khác...',
+        },
+        {
+          title: 'Anh lui về sau rồi nhé',
+          cat: 'Thư tay',
+          date: '08.10.2026',
+          time: '21:05',
+          read: '4 phút đọc',
+          art: 'paper',
+          tags: ['buông bỏ', 'lời xin lỗi', 'người cũ'],
+          excerpt: 'Nếu em đọc được những dòng này, thì đọc xong anh rời đi nhé.',
+          body:
+            'Gửi em,\nNếu em đọc được những dòng này, thì đọc xong anh rời đi nhé.\n\nAnh nghĩ có lẽ ' +
+            'anh đã ở lại trong cuộc đời em đủ lâu để làm em vui, cũng đủ lâu để khiến em tổn thương. ' +
+            'Anh từng nghĩ chỉ cần anh còn yêu em thì mọi chuyện rồi sẽ ổn, nhưng anh đã sai. Tình yêu ' +
+            'của anh có lẽ chưa bao giờ đủ dịu dàng để em cảm thấy bình yên.\n\nAnh xin lỗi vì những ' +
+            'lần nóng nảy, vì những lúc vô tâm, vì cái tôi của anh đã khiến em phải chịu đựng nhiều hơn ' +
+            'những gì một người con gái đáng được nhận. Anh biết có những lúc em chỉ cần anh giữ em lại ' +
+            'đúng thời điểm em cần thì sẽ không có gì xảy ra, nhưng anh lại chọn im lặng. Để rồi đến ' +
+            'khi em mệt mỏi, anh mới hiểu ra rằng em đã từng cố gắng vì anh nhiều đến thế nào.\n\nAnh ' +
+            'đã từng muốn níu em lại, muốn xin em thêm một cơ hội, muốn nói rằng anh sẽ thay đổi. Nhưng ' +
+            'mọi lí do để níu giữ em lại có xứng đáng không? gia đình hay sự vô tâm? sao không nói với ' +
+            'anh. Nhưng có lẽ đến một lúc nào đó, yêu một người không phải là cố giữ họ bằng mọi giá, ' +
+            'mà là biết rời đi khi sự xuất hiện của mình chỉ còn khiến họ đau.\n\nNên lần này anh không ' +
+            'xin em ở lại nữa.\n\nAnh chỉ muốn em biết rằng anh thật sự đã từng thương em rất nhiều. ' +
+            'Chỉ tiếc là anh nhận ra cách yêu của mình sai quá muộn. Nếu sau này em có nhớ đến anh, ' +
+            'đừng nhớ về những lần anh làm em khóc nhé. Hãy nhớ rằng đã từng có một người thật lòng yêu ' +
+            'em, chỉ là người đó chưa đủ trưởng thành để giữ lấy tình yêu của mình.\n\nCòn bây giờ, đọc ' +
+            'xong anh rời đi nhé.\n\nAnh không biến mất vì hết thương em. Anh rời đi vì anh biết có ' +
+            'người xứng đáng hơn anh xuất hiện rồi. Mong em sau này sẽ bình yên, sẽ được yêu thương ' +
+            'thật tốt, và sẽ không bao giờ phải khóc vì một người như anh nữa. Nhưng nếu sau này anh ' +
+            'còn cơ hội thì anh sẽ đến đón em nhé. \n\nGiờ anh đi nhé… lần này anh thật sự không quay ' +
+            'lại làm phiền em nữa đâu.',
+        },
+        {
+          title: 'Dù đúng dù sai, anh vẫn thương',
+          cat: 'Tình yêu',
+          date: '04.10.2026',
+          time: '19:40',
+          read: '1 phút đọc',
+          art: 'sunset',
+          tags: ['dịu dàng', 'lời xin lỗi'],
+          excerpt: 'Anh có thể sẽ to tiếng khi nổi giận, nhưng anh sẽ ôm em nếu em bật khóc.',
+          body:
+            'Anh có thể sẽ to tiếng khi anh nổi giận, nhưng anh sẽ ôm em nếu em bật khóc.\n\nDù đúng dù ' +
+            'sai thế nào, giây phút em rơi lệ, tất cả đều là lỗi của anh.\n\nAnh sẽ ôm lấy em để em ' +
+            'biết được rằng:\n\n“anh vẫn thương và cần em.”',
+        },
+        {
+          title: 'Trở về vạch xuất phát',
+          cat: 'Tình yêu',
+          date: '30.09.2026',
+          time: '23:18',
+          read: '1 phút đọc',
+          art: 'rain',
+          tags: ['tình yêu dang dở', 'hồi ức'],
+          excerpt:
+            'Thương một người vốn chẳng có lỗi gì hết, chỉ buồn khi mình không còn là lựa chọn của người ta.',
+          body:
+            'Từ người dưng trở thành bạn,\nTừ bạn trở thành người anh thương,\nTừ người anh thương trở ' +
+            'về vạch xuất phát..\n\nThương một người vốn chẳng có lỗi gì hết\nchỉ buồn khi mình không ' +
+            'còn là lựa chọn của người ta thôi',
+        },
+        {
+          title: 'Vì sao lại chọn anh',
+          cat: 'Tâm trạng',
+          date: '27.09.2026',
+          time: '02:26',
+          read: '1 phút đọc',
+          art: 'window',
+          tags: ['tổn thương', 'tình yêu dang dở'],
+          excerpt:
+            'Từng hớn hở khoe với cả thế giới về tình yêu mình có, thế giờ phải loay hoay tìm lí do giải thích.',
+          body:
+            '“Was I not good enough, or was this love not beautiful enough for you to choose?”\n\nTừng ' +
+            'hớn hở khoe với cả thế giới về tình yêu mình có, thế giờ phải loay hoay tìm lí do giải ' +
+            'thích và nói bản thân đang rất ổn.',
+        },
+        {
+          title: 'Vẫn yêu, vẫn thương và vẫn để em rời đi',
+          cat: 'Tình yêu',
+          date: '23.09.2026',
+          time: '22:09',
+          read: '2 phút đọc',
+          art: 'sea',
+          tags: ['buông bỏ', 'dịu dàng', 'tình yêu dang dở'],
+          excerpt: 'Nếu không hạnh phúc cùng em, thì xem em hạnh phúc với người khác cũng được.',
+          body:
+            'Nếu không hạnh phúc cùng em, thì xem em hạnh phúc với người khác cũng được\nem hạnh phúc ' +
+            'là được rồi, anh hay ai mang lại đều không quan trọng\n\nvì anh có chút ích kỉ,\nnên vẫn ' +
+            'hy vọng được ở cạnh em\n\nxin lỗi, nếu tình cảm của anh khiến em khó xử\nthấy em yêu họ, ' +
+            'anh cũng đau lòng chứ\n\nnhưng mà nếu không ai ở cạnh em, yêu thương em, bảo vệ em, giúp ' +
+            'em thoát ra khỏi các cảm xúc tiêu cực như anh hiện có thì\nanh còn đau lòng hơn nữa',
+        },
+        {
+          title: 'Anh vẫn chưa xóa',
+          cat: 'Ký ức',
+          date: '25.10.2026',
+          time: '23:41',
+          read: '2 phút đọc',
+          art: 'window',
+          tags: ['nỗi nhớ', 'người cũ', 'chờ đợi'],
+          excerpt: 'Không phải vì anh định gọi, cũng không phải vì còn hy vọng em sẽ nhắn lại.',
+          body:
+            'Anh vẫn giữ số của em trong danh bạ. Những bức ảnh, những video ngắn, những cuộc trò ' +
+            'chuyện, những khoảng khắc chúng ta hưuas và xin lỗi với nhau.\n\nChỉ là xóa đi thì giống ' +
+            'như thừa nhận rằng mọi thứ đã thật sự kết thúc. Còn để đó, anh vẫn có thể tự dối mình rằng ' +
+            'chúng ta chỉ đang tạm xa nhau một thời gian.\n\nCó những đêm anh mở khung chat, nghe lại ' +
+            'đoạn ghi âm, những lời chúc đầu năm mới, nhìn tin nhắn cuối cùng rất lâu. Gõ một câu, xóa ' +
+            'đi. Gõ một câu khác, lại xóa.\n\nRồi anh tắt màn hình, tự nhủ: thôi, để em yên.\n\nCó lẽ ' +
+            'một ngày nào đó anh sẽ gửi nó ở đâu đó. Nhưng không phải hôm nay.',
+        },
+        {
+          title: 'Ngày sinh tồi tệ 09-10',
+          cat: 'Ký ức',
+          date: '09.10.2026',
+          time: '23:50',
+          read: '1 phút đọc',
+          art: 'rain',
+          tags: ['nỗi nhớ', 'hồi ức', 'chờ đợi'],
+          excerpt: 'Sắp rồi, một lần nữa anh lại đợi một tin nhắn.',
+          body: `sắp rồi, một lần nữa anh lại đợi một tin nhắn "hẹp pì bơ đề tú..👏👏👏"
+                khi bắt đầu ở đâu sẽ lại bắt đầu ở đấy
+
+                nhưng rồi, 1 giờ..
+                2 giờ..
+                3 giờ...
+                khoảng thời gian kỳ vọng đó biến thành thời gian dài tồi tệ
+                một tháng tồi tệ
+
+                một khoảng thời gian ôn lại những dòng tin nhắn
+                vì nhau ? thật sự bất ngờ vì em với anh đến bây giờ còn đồng hành?
+                những lời chúc? mọi dự định cùng nhau?
+
+                nhiều ngày sau đó, ai đưa bản thân mình về nhỉ?`,
+        },
+        {
+          title: 'Cuộc sống của anh',
+          cat: 'Tâm trạng',
+          date: '01.11.2026',
+          time: '23:00',
+          read: '2 phút đọc',
+          art: 'window',
+          tags: ['nỗi nhớ', 'tổn thương', 'người cũ'],
+          excerpt:
+            'Sau ngày chúng mình dừng lại, mỗi ngày trôi qua của anh đều tự diễn ra một niềm tin.',
+          body:
+            'sau từ ngày chúng mình dừng lại, mỗi ngày trôi qua của anh đều tự diễn ra một niềm tin, ' +
+            'một cơ hội sắp đến có thể quay lại với em, cùng em viết tiếp câu chuyện của đôi ' +
+            'mình.\nnhưng vì lí do chúng ta đặt ra là gia đình nên anh phải về giải quyết, phải nói với ' +
+            'mẹ rằng anh lựa chọn là em. để cho nút thắt trong lòng em được gỡ bỏ.\nđi làm đi chơi, dù ' +
+            'người ta có nói tệ em thế nào, anh vẫn chấp niệm rằng sẽ sớm thôi 1 cơ hội của anh sẽ ' +
+            'có\n\nngày sinh nhật anh, mọi thứ đổ vỡ. từ sau ngày đó anh tìm đến mọi thứ để an ủi bản ' +
+            'thân.\nđể làm bản thân bớt đi khoảng trống để có thể không nghĩ tới em.\n\nmột ngày có thể ' +
+            'anh làm 16 tiếng, nhưng về vẫn có thời gian để nghĩ về em.\ntập thể thao, game, gym chạy ' +
+            'bộ để cho bản thân mệt mỏi dễ vào giấc ngủ nhưng không có tác dụng nào\ncuối cùng thì ' +
+            'không muốn tiếp tục làm gì nữa\n\nvà anh đã bỏ mọi thứ, công việc, bạn bè, gia đình để tìm ' +
+            'đến\nbia, rượu đến cả thứ anh ghét là thuốc lá nhưng mà giờ anh quen rồi, nó không tệ như ' +
+            "anh nghĩ\n\n sao mình lại là người mắc kẹt?\nmọi người chỉ biết trách là anh, 'khoảng thời " +
+            "gian qua mày không biết cô ấy phải trải qua những gì'\nvậy thời gian của anh mọi người có " +
+            'biết đến không?',
+        },
+        {
+          title: 'Bài hát em từng thích, khung cảnh từng có em',
+          cat: 'Tâm trạng',
+          date: '15.10.2026',
+          time: '20:58',
+          read: '2 phút đọc',
+          art: 'rain',
+          tags: ['mưa', 'hồi ức', 'chữa lành'],
+          excerpt:
+            'Chỉ cần vài nốt nhạc là mọi thứ ùa về: ghế sau xe, cơn mưa bất chợt, em hát sai lời rồi cười một mình.',
+          body:
+            'Hôm nay quán cà phê bật lại bài hát em từng thích. Anh đang nói dở một câu thì khựng ' +
+            'lại.\n\nLạ thật, bao nhiêu thứ anh đã cố quên, vậy mà chỉ cần vài nốt nhạc hay thấy những ' +
+            'đoạn đường đã từng nhìn cùng nhau, là mọi thứ ùa về: ghế sau xe, cơn mưa bất chợt, anh ' +
+            'ngồi hát sai lời rồi cười một mình cùng với dòng nước mắt.\n\nAnh không đổi bài. Cũng ' +
+            'không rời đi. Anh ngồi nghe hết.\n\nCó lẽ nhớ một người không phải lúc nào cũng đau. Đôi ' +
+            "khi, nó chỉ là một bài hát cũ, một cơn mưa ngoài cửa, và một nụ cười mà anh vẫn giữ. 'mùa " +
+            "hè năm ấy cứ ngỡ..'",
+        },
+      ];
+      const IMG = {
+        'Cuộc sống của anh': 'images/21_snoopy_thought_bubbles_rain.png',
+        'Những con đường chúng ta từng đi qua': 'images/14_snoopy_girl_walking_rain.png',
+        'Anh vẫn chưa xóa': 'images/20_snoopy_phone_photos_rain.png',
+        'Gửi người từng thương': 'images/13_snoopy_girl_doghouse_rain.png',
+        'Vòng lặp bản thân': 'images/05_snoopy_ngoi_thu_min.jpg',
+        'Lá thư không gửi': 'images/19_snoopy_paper_boat_rain.png',
+        'Xin đừng chúc anh hạnh phúc': 'images/01_snoopy_cam_o_du.jpg',
+        'Chờ một người không về': 'images/10_snoopy_window_rain.png',
+        'Bài hát em từng thích, khung cảnh từng có em':
+          'images/18_snoopy_headphones_tears_rain.png',
+        'Lặng lẽ là một kiểu mạnh mẽ': 'images/09_snoopy_walking_away_rain.png',
+        'Kẻ ở lại ôm hạnh phúc': 'images/08_snoopy_puddle_reflection_rain.png',
+        'Có những ngày, chỉ muốn quay lại làm người cũ của nhau…':
+          'images/12_snoopy_girl_bench_rain.png',
+        'Thành phố vẫn mưa': 'images/17_snoopy_empty_chair_coffee_rain.png',
+        'Ngày sinh tồi tệ 09-10': 'images/16_snoopy_alone_birthday_rain.png',
+        'Anh lui về sau rồi nhé': 'images/03_snoopy_quay_lung.jpg',
+        'Thay vì hỏi “có thể quay lại không?”': 'images/04_snoopy_cam_o_dung_mua.jpg',
+        'Dù đúng dù sai, anh vẫn thương': 'images/02_snoopy_nam_duoi_mua.jpg',
+        'Một ngày mình ổn hơn': 'images/07_snoopy_lying_doghouse_rain.png',
+        'Trở về vạch xuất phát': 'images/06_snoopy_park_bench_rain.png',
+        'Vì sao lại chọn anh': 'images/08_snoopy_puddle_reflection_rain.png',
+        'Vẫn yêu, vẫn thương và vẫn để em rời đi': 'images/15_snoopy_girl_window_rain.png',
+      };
+      posts.forEach((p) => {
+        if (IMG[p.title]) p.img = IMG[p.title];
+      });
+      const dateKey = (p) => {
+        const [d, m, y] = p.date.split('.');
+        return `${y}${m}${d}${p.time.replace(':', '')}`;
+      };
+      posts.sort((a, b) => dateKey(b).localeCompare(dateKey(a)));
+      if (posts[0].img)
+        document.querySelector('.featured').style.setProperty('--hero', `url("${posts[0].img}")`);
+      const artClass = { rain: '', sunset: 'sunset', paper: 'paper', sea: 'sea', window: 'window' };
+      function card(p, i) {
+        const image = p.img
+          ? `<img src="${p.img}" alt="" loading="lazy" onerror="this.remove()">`
+          : '';
+        return (
+          `<article class="post-card" tabindex="0" role="button" data-article="${i}" aria-label="Đọc ${p.title}">` +
+          `<div class="post-art ${artClass[p.art] || ''}">${image}</div>` +
+          `<span class="pill">${p.cat.toUpperCase()}</span>` +
+          `<h3>${p.title}</h3><p>${p.excerpt}</p>` +
+          `<div class="post-bottom"><span>${p.read}</span><span>→</span></div></article>`
+        );
+      }
+      function renderCards(target, list) {
+        document.getElementById(target).innerHTML = list
+          .map((p) => card(p, posts.indexOf(p)))
+          .join('');
+      }
+      function renderSide() {
+        const count = (arr) => arr.reduce((m, k) => ((m[k] = (m[k] || 0) + 1), m), {});
+        const cats = count(posts.map((p) => p.cat)),
+          tags = count(posts.flatMap((p) => p.tags));
+        const sorted = (o) =>
+          Object.entries(o).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'vi'));
+        document.getElementById('catList').innerHTML = sorted(cats)
+          .map(([k, n]) => `<button data-filter="${k}">›　${k} <span>(${n})</span></button>`)
+          .join('');
+        document.getElementById('tagList').innerHTML = sorted(tags)
+          .map(([k]) => `<button class="tag" data-filter="${k}">#${k}</button>`)
+          .join('');
+      }
+      function showPage(page) {
+        document
+          .querySelectorAll('.page')
+          .forEach((x) => x.classList.toggle('active', x.id === 'page-' + page));
+        document
+          .querySelectorAll('[data-page]')
+          .forEach((x) => x.classList.toggle('active', x.dataset.page === page));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof rainBurst === 'function') rainBurst();
+      }
+      const perPage = () => {
+        const w = window.innerWidth;
+        return w > 1000 ? 9 : w > 390 ? 8 : 6;
+      };
+      let currentList = posts,
+        currentPage = 1,
+        lastPer = perPage();
+      function renderPosts() {
+        const total = Math.max(1, Math.ceil(currentList.length / perPage()));
+        currentPage = Math.min(Math.max(currentPage, 1), total);
+        renderCards(
+          'allCards',
+          currentList.slice((currentPage - 1) * perPage(), currentPage * perPage()),
+        );
+        renderPager(total);
+      }
+      function renderPager(total) {
+        const el = document.getElementById('pager');
+        if (total <= 1) {
+          el.innerHTML = '';
+          return;
+        }
+        let h = `<button data-pg="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="Trang trước">←</button>`;
+        for (let n = 1; n <= total; n++)
+          h +=
+            `<button data-pg="${n}" class="${n === currentPage ? 'active' : ''}" ` +
+            `${n === currentPage ? 'aria-current="page"' : ''}>${n}</button>`;
+        h += `<button data-pg="${currentPage + 1}" ${currentPage === total ? 'disabled' : ''} aria-label="Trang sau">→</button>`;
+        el.innerHTML = h;
+      }
+      function filterPosts(query = '', category = '') {
+        const q = query.trim().toLowerCase();
+        const found = posts.filter(
+          (p) =>
+            (!q || [p.title, p.excerpt, p.cat, ...p.tags].join(' ').toLowerCase().includes(q)) &&
+            (!category || p.cat === category || p.tags.includes(category)),
+        );
+        currentList = found;
+        currentPage = 1;
+        renderPosts();
+        document.getElementById('emptyState').style.display = found.length ? 'none' : 'block';
+        document.getElementById('postsHeading').textContent =
+          category || q ? 'Kết quả tìm kiếm' : 'Những tấm postcard';
+        showPage('posts');
+      }
+      function openArticle(i) {
+        const p = posts[i];
+        if (!p) return;
+        document.getElementById('modalCategory').textContent = p.cat.toUpperCase();
+        document.getElementById('modalTitle').textContent = p.title;
+        {
+          const mi = document.getElementById('modalImg');
+          mi.hidden = !p.img;
+          if (p.img) mi.src = p.img;
+        }
+        document.getElementById('modalMeta').textContent =
+          p.date + '　·　' + p.time + '　·　' + p.read;
+        document.getElementById('modalBody').innerHTML = p.body
+          .split('\n\n')
+          .map((t) => '<p>' + t.replace(/\n/g, '<br>') + '</p>')
+          .join('');
+        document.getElementById('articleModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeArticle() {
+        document.getElementById('articleModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('click', (e) => {
+        const pg = e.target.closest('[data-page]');
+        if (pg) showPage(pg.dataset.page);
+        const ar = e.target.closest('[data-article]');
+        if (ar) openArticle(Number(ar.dataset.article));
+        const pgb = e.target.closest('[data-pg]');
+        if (pgb && !pgb.disabled) {
+          currentPage = Number(pgb.dataset.pg);
+          renderPosts();
+          document.getElementById('page-posts').scrollIntoView({ behavior: 'smooth' });
+        }
+        const fl = e.target.closest('[data-filter]');
+        if (fl) filterPosts('', fl.dataset.filter);
+      });
+      document.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.post-card')) {
+          e.preventDefault();
+          openArticle(Number(e.target.dataset.article));
+        }
+        if (e.key === 'Escape') closeArticle();
+      });
+      document.getElementById('closeModal').addEventListener('click', closeArticle);
+      document.getElementById('articleModal').addEventListener('click', (e) => {
+        if (e.target.id === 'articleModal') closeArticle();
+      });
+      document.getElementById('searchForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        filterPosts(document.getElementById('searchInput').value);
+      });
+      renderCards('homeCards', posts.slice(1, 7));
+      renderPosts();
+      renderSide();
+      const songs = [
+          { title: 'Sau Đêm Nay', artist: 'SEANPOET.', src: 'music/sau-dem-nay.mp3' },
+          { title: 'Chúng ta Và Sau Này', artist: 'Sing x Anfang', src: 'music/chung-ta-va-sau-nay.mp3' },
+          { title: 'Không Môn Đăng Hộ Đối', artist: 'Tống Khang', src: 'music/khong-mon-dang-ho-doi.mp3' },
+          { title: 'Phai', artist: 'Chie', src: 'music/phai.mp3' },
+          { title: 'Đổi Hạnh Phúc Lấy Cô Đơn', artist: 'Song Luân', src: 'music/doi-hanh-phuc-lay-co-don.mp3' }
+      ];
+      const $ = (id) => document.getElementById(id),
+        audio = $('audio');
+      const ICON = {
+        play: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',
+        pause: '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>',
+        prev: '<svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6L18 18V6z"/></svg>',
+        next: '<svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>',
+      };
+      let cur = 0,
+        blocked = false,
+        userPaused = false,
+        autoSkip = true,
+        tried = 0;
+      $('prevBtn').innerHTML = ICON.prev;
+      $('nextBtn').innerHTML = ICON.next;
+      $('playBtn').innerHTML = ICON.play;
+      audio.volume = 0.6;
+      $('playlist').innerHTML = songs
+        .map(
+          (s, i) =>
+            `<li><button data-song="${i}"><span>${i + 1}</span><span>${s.title}<small>${s.artist}</small></span></button></li>`,
+        )
+        .join('');
+      function showSong(i) {
+        cur = (i + songs.length) % songs.length;
+        const s = songs[cur];
+        audio.src = s.src;
+        $('npTitle').textContent = s.title;
+        $('npArtist').textContent = s.artist;
+        $('npMsg').style.display = 'none';
+        $('barFill').style.width = '0';
+        document
+          .querySelectorAll('#playlist button')
+          .forEach((b, k) => b.classList.toggle('active', k === cur));
+      }
+      function playSong() {
+        const r = audio.play();
+        if (r && r.catch)
+          r.catch((e) => {
+            if (e && e.name === 'NotAllowedError') blocked = true;
+          });
+      }
+      audio.addEventListener('play', () => {
+        blocked = false;
+        $('playBtn').innerHTML = ICON.pause;
+        $('eq').classList.add('on');
+      });
+      audio.addEventListener('pause', () => {
+        $('playBtn').innerHTML = ICON.play;
+        $('eq').classList.remove('on');
+      });
+      audio.addEventListener('ended', () => {
+        showSong(cur + 1);
+        playSong();
+      });
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration)
+          $('barFill').style.width = (audio.currentTime / audio.duration) * 100 + '%';
+      });
+      audio.addEventListener('error', () => {
+        if (autoSkip && ++tried < songs.length) {
+          showSong(cur + 1);
+          playSong();
+          return;
+        }
+        const m = $('npMsg');
+        m.textContent = `Chưa tìm thấy file "${songs[cur].src}". Hãy đặt file nhạc vào thư mục music/ cạnh index.html.`;
+        m.style.display = 'block';
+      });
+      $('playBtn').addEventListener('click', () => {
+        autoSkip = false;
+        if (audio.paused) {
+          userPaused = false;
+          playSong();
+        } else {
+          userPaused = true;
+          audio.pause();
+        }
+      });
+      $('prevBtn').addEventListener('click', () => {
+        autoSkip = false;
+        userPaused = false;
+        showSong(cur - 1);
+        playSong();
+      });
+      $('nextBtn').addEventListener('click', () => {
+        autoSkip = false;
+        userPaused = false;
+        showSong(cur + 1);
+        playSong();
+      });
+      $('playlist').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-song]');
+        if (!b) return;
+        autoSkip = false;
+        userPaused = false;
+        showSong(Number(b.dataset.song));
+        playSong();
+      });
+      $('bar').addEventListener('click', (e) => {
+        if (!audio.duration) return;
+        const r = $('bar').getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+      });
+      $('vol').addEventListener('input', (e) => {
+        audio.volume = Number(e.target.value);
+      });
+      ['pointerdown', 'keydown'].forEach((ev) =>
+        document.addEventListener(
+          ev,
+          (e) => {
+            if (blocked && !userPaused && audio.paused && !e.target.closest('#player')) playSong();
+          },
+          true,
+        ),
+      );
+      showSong(Math.floor(Math.random() * songs.length));
+      if (getComputedStyle(document.querySelector('aside.right')).display !== 'none') playSong();
+      window.addEventListener('resize', () => {
+        const n = perPage();
+        if (n !== lastPer) {
+          currentPage = Math.floor(((currentPage - 1) * lastPer) / n) + 1;
+          lastPer = n;
+          renderPosts();
+        }
+      });
+    </script>
+    <script>
+      var rainCv = document.createElement('canvas');
+      rainCv.setAttribute('aria-hidden', 'true');
+      rainCv.style.cssText =
+        'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60;opacity:0';
+      document.body.appendChild(rainCv);
+      var rainCtx = rainCv.getContext('2d');
+      var rainRaf = 0;
+      function rainBurst(ms = 20000) {
+        if (!rainCv || !rainCtx) return;
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        cancelAnimationFrame(rainRaf);
+        const dpr = window.devicePixelRatio || 1,
+          W = innerWidth,
+          H = innerHeight;
+        rainCv.width = W * dpr;
+        rainCv.height = H * dpr;
+        rainCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.min(300, Math.round(W / 4)),
+          drops = [];
+        const make = (fresh) => ({
+          x: Math.random() * (W + 120) - 60,
+          y: fresh ? -Math.random() * H : Math.random() * -40,
+          len: 12 + Math.random() * 16,
+          v: 900 + Math.random() * 600,
+          a: 0.25 + Math.random() * 0.35,
+        });
+        for (let k = 0; k < n; k++) drops.push(make(true));
+        const slant = 0.18,
+          t0 = performance.now();
+        let last = t0;
+        rainCv.style.opacity = '1';
+        (function frame(t) {
+          const dt = Math.min(0.05, (t - last) / 1000);
+          last = t;
+          const p = (t - t0) / ms;
+          if (p >= 1) {
+            rainCtx.clearRect(0, 0, W, H);
+            rainCv.style.opacity = '0';
+            return;
+          }
+          const env = Math.min(1, p / 0.15, (1 - p) / 0.3);
+          rainCtx.clearRect(0, 0, W, H);
+          rainCtx.lineWidth = 1.2;
+          rainCtx.lineCap = 'round';
+          for (const d of drops) {
+            d.y += d.v * dt;
+            d.x -= d.v * dt * slant;
+            if (d.y > H + 30) Object.assign(d, make(false));
+            rainCtx.strokeStyle = `rgba(200,220,235,${(d.a * env).toFixed(3)})`;
+            rainCtx.beginPath();
+            rainCtx.moveTo(d.x, d.y);
+            rainCtx.lineTo(d.x + d.len * slant, d.y - d.len);
+            rainCtx.stroke();
+          }
+          rainRaf = requestAnimationFrame(frame);
+        })(t0);
+      }
+      rainBurst();
+    </script>
+  </body>
+</html>
