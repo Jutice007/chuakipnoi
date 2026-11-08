@@ -1140,6 +1140,118 @@
           height: 140px;
         }
       }
+    
+      /* ===== Lời nhắn ===== */
+      .guestbook {
+        margin-top: 28px;
+        padding: 28px clamp(18px, 3vw, 34px);
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #14283a, #0f1f2d);
+      }
+      .guestbook h2 {
+        margin: 12px 0 4px;
+        font-style: italic;
+        font-weight: 400;
+      }
+      .gb-sub {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+      #gbForm {
+        display: grid;
+        gap: 12px;
+        max-width: 640px;
+      }
+      #gbForm input,
+      #gbForm textarea {
+        width: 100%;
+        padding: 11px 14px;
+        color: var(--ink);
+        background: #0c1721;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        outline: none;
+      }
+      #gbForm textarea {
+        resize: vertical;
+        min-height: 96px;
+      }
+      #gbForm input:focus,
+      #gbForm textarea:focus {
+        border-color: #7f98ab;
+      }
+      .gb-hp {
+        position: absolute !important;
+        left: -9999px;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0;
+      }
+      .gb-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      #gbSend {
+        padding: 9px 20px;
+        border: 1px solid #b8c6d0;
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--paper-ink);
+      }
+      #gbSend:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      #gbStatus {
+        min-height: 1.3em;
+        font-size: 0.85rem;
+        color: #a9c3d6;
+      }
+      .gb-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 22px;
+        margin-top: 26px;
+      }
+      .gb-note {
+        padding: 14px 16px 12px;
+        background: var(--paper);
+        color: var(--paper-ink);
+        box-shadow: 0 8px 20px #0005;
+        transform: rotate(-1.2deg);
+      }
+      .gb-note:nth-child(even) {
+        transform: rotate(1.2deg);
+      }
+      .gb-note p {
+        margin: 0 0 12px;
+        font-style: italic;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .gb-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font:
+          0.72rem/1.4 Arial,
+          sans-serif;
+        letter-spacing: 0.06em;
+        color: #5b6770;
+      }
+      .gb-meta b {
+        font-weight: 600;
+        color: var(--paper-ink);
+      }
+      .gb-empty {
+        grid-column: 1 / -1;
+        color: var(--muted);
+        font-style: italic;
+      }
     </style>
   </head>
 
@@ -1304,6 +1416,23 @@
                 </div>
               </div>
             </div>
+            <section class="guestbook" id="guestbook">
+              <span class="pill">LỜI NHẮN</span>
+              <h2>Để lại một lời nhắn</h2>
+              <p class="gb-sub">Một câu thôi cũng được. Ai ghé qua cũng sẽ đọc được.</p>
+              <form id="gbForm" autocomplete="off">
+                <input id="gbName" maxlength="30" placeholder="Tên của bạn (bỏ trống sẽ là Ẩn danh)" />
+                <textarea id="gbText" maxlength="300" rows="4" placeholder="Viết gì đó…" required></textarea>
+                <input id="gbWebsite" class="gb-hp" tabindex="-1" aria-hidden="true" autocomplete="off" />
+                <div class="gb-row">
+                  <span id="gbCount">0/300</span>
+                  <button type="submit" id="gbSend">Gửi lời nhắn　→</button>
+                </div>
+                <div id="gbStatus" role="status"></div>
+              </form>
+              <div class="gb-list" id="gbList"></div>
+              <nav class="pager" id="gbPager" aria-label="Phân trang lời nhắn"></nav>
+            </section>
           </section>
         </main>
         <aside class="right">
@@ -1746,6 +1875,29 @@
             "khi, nó chỉ là một bài hát cũ, một cơn mưa ngoài cửa, và một nụ cười mà anh vẫn giữ. 'mùa " +
             "hè năm ấy cứ ngỡ..'",
         },
+
+        {
+          title: 'Nỗi nhớ cứ mãi ở đây',
+          cat: 'Ký ức',
+          date: '08.11.2026',
+          time: '23:36',
+          read: '1 phút đọc',
+          art: 'rain',
+          tags: ['tổn thương', 'nỗi nhớ', 'hồi ức'],
+          excerpt: 'Anh đã bảo mình rời đi mà? Sao nỗi nhớ cứ mãi ở đây vậy.',
+          body:
+            'Anh cho rằng mỗi nỗi đau đều từ hôm đó\n' +
+            'giá như anh can đảm, giá như anh hiểu em hơn, giá như.. không để em đợi lâu đến vậy\n' +
+            'sao qua lâu rồi lại còn thấy đau,\n' +
+            'anh đã cố để lại sau câu chuyện của quá khứ\n' +
+            'bao nhiêu lâu mà tim anh vẫn cứ tìm\n' +
+            'tìm lại người con gái rất xinh thường cười với anh\n' +
+            'tìm lại những kỉ niệm, những con đường, những quán ăn, những bức ảnh, những đoạn ghi âm\n\n' +
+            'có phải anh cố chấp ngây thơ dù biết tất cả đã phai mờ nhưng mong chờ người con gái đấy không?\n' +
+            'sợ rằng chỉ còn mình anh muốn trở về thôi, phải đợi bao lâu nữa đây\n' +
+            'anh tuyệt vọng rồi\n\n' +
+            'anh đã bảo mình rời đi mà? sao nỗi nhớ cứ mãi ở đây vậy.',
+        },
       ];
       const IMG = {
         'Cuộc sống của anh': 'images/21_snoopy_thought_bubbles_rain.png',
@@ -1771,6 +1923,8 @@
         'Trở về vạch xuất phát': 'images/06_snoopy_park_bench_rain.png',
         'Vì sao lại chọn anh': 'images/11_snoopy_girl_puddle_rain.png',
         'Vẫn yêu, vẫn thương và vẫn để em rời đi': 'images/15_snoopy_girl_window_rain.png',
+        
+        'Nỗi nhớ cứ mãi ở đây': 'images/22_snoopy_thinking_holding_hands_rain.png',
       };
       posts.forEach((p) => {
         if (IMG[p.title]) p.img = IMG[p.title];
@@ -1780,8 +1934,20 @@
         return `${y}${m}${d}${p.time.replace(':', '')}`;
       };
       posts.sort((a, b) => dateKey(b).localeCompare(dateKey(a)));
-      if (posts[0].img)
-        document.querySelector('.featured').style.setProperty('--hero', `url("${posts[0].img}")`);
+      // Bài ghim ở banner: luôn là bài này, không phụ thuộc bài mới nhất
+      const FEATURED_TITLE = 'Anh lui về sau rồi nhé';
+      const featuredIdx = Math.max(0, posts.findIndex((p) => p.title === FEATURED_TITLE));
+      const featuredPost = posts[featuredIdx];
+      {
+        const f = document.querySelector('.featured');
+        f.querySelector('.pill').textContent = featuredPost.cat.toUpperCase();
+        f.querySelector('h2').textContent = featuredPost.title;
+        f.querySelector('p').textContent = featuredPost.excerpt;
+        f.querySelector('.meta').textContent =
+          featuredPost.date + '　·　' + featuredPost.time + '　·　' + featuredPost.read;
+        f.querySelector('.read').dataset.article = featuredIdx;
+        if (featuredPost.img) f.style.setProperty('--hero', `url("${featuredPost.img}")`);
+      }
       const artClass = { rain: '', sunset: 'sunset', paper: 'paper', sea: 'sea', window: 'window' };
       function card(p, i) {
         const image = p.img
@@ -1920,7 +2086,7 @@
         e.preventDefault();
         filterPosts(document.getElementById('searchInput').value);
       });
-      renderCards('homeCards', posts.slice(1, 7));
+      renderCards('homeCards', posts.filter((p) => p !== featuredPost).slice(0, 6));
       renderPosts();
       renderSide();
       const songs = [
@@ -2116,6 +2282,186 @@
         })(t0);
       }
       rainBurst();
+    </script>
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp,
+        query,
+        orderBy,
+        limit,
+        onSnapshot,
+      } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+      // Dán cấu hình Firebase của bạn vào đây (Project settings → Your apps → Web app)
+      const FIREBASE_CONFIG = {
+        apiKey: 'AIzaSyAJVgJFn4Uy9zR9NIRh34jejBsAa2OaTdo',
+        authDomain: 'postcard-blog.firebaseapp.com',
+        projectId: 'postcard-blog',
+        appId: '1:187513313246:web:6c9d639540aa03466daf4f',
+      };
+
+      const configured = !!(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId);
+      const $ = (id) => document.getElementById(id);
+      const form = $('gbForm'),
+        nameEl = $('gbName'),
+        textEl = $('gbText'),
+        list = $('gbList'),
+        statusEl = $('gbStatus'),
+        sendBtn = $('gbSend');
+      const COOLDOWN = 30000;
+      const pad = (n) => String(n).padStart(2, '0');
+      const fmt = (ms) => {
+        const d = new Date(ms);
+        return `${pad(d.getHours())}:${pad(d.getMinutes())}　·　${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
+      };
+
+      const PER = 6;
+      let all = [],
+        gbPage = 1;
+      const totalPages = () => Math.max(1, Math.ceil(all.length / PER));
+      function render(items) {
+        all = items;
+        gbPage = Math.min(gbPage, totalPages());
+        draw();
+      }
+      function drawPager() {
+        const el = $('gbPager'),
+          total = totalPages();
+        if (total <= 1) {
+          el.innerHTML = '';
+          return;
+        }
+        const set = new Set([1, total, gbPage - 1, gbPage, gbPage + 1]);
+        const nums = [...set].filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+        let h = `<button data-gbpg="${gbPage - 1}" ${gbPage === 1 ? 'disabled' : ''} aria-label="Trang trước">←</button>`;
+        let prev = 0;
+        for (const n of nums) {
+          if (n - prev > 1) h += '<button disabled>…</button>';
+          h +=
+            `<button data-gbpg="${n}" class="${n === gbPage ? 'active' : ''}" ` +
+            `${n === gbPage ? 'aria-current="page"' : ''}>${n}</button>`;
+          prev = n;
+        }
+        h += `<button data-gbpg="${gbPage + 1}" ${gbPage === total ? 'disabled' : ''} aria-label="Trang sau">→</button>`;
+        el.innerHTML = h;
+      }
+      $('gbPager').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-gbpg]');
+        if (!b || b.disabled) return;
+        gbPage = Number(b.dataset.gbpg);
+        draw();
+        $('guestbook').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      function draw() {
+        drawPager();
+        const items = all.slice((gbPage - 1) * PER, gbPage * PER);
+        list.textContent = '';
+        if (!items.length) {
+          const e = document.createElement('div');
+          e.className = 'gb-empty';
+          e.textContent = 'Chưa có lời nhắn nào. Bạn viết dòng đầu tiên nhé.';
+          list.appendChild(e);
+          return;
+        }
+        for (const it of items) {
+          const n = document.createElement('article');
+          n.className = 'gb-note';
+          const p = document.createElement('p');
+          p.textContent = it.text;
+          const meta = document.createElement('div');
+          meta.className = 'gb-meta';
+          const who = document.createElement('b');
+          who.textContent = '— ' + it.name;
+          const when = document.createElement('span');
+          when.textContent = fmt(it.ts);
+          meta.append(who, when);
+          n.append(p, meta);
+          list.appendChild(n);
+        }
+      }
+
+      let store;
+      if (configured) {
+        const db = getFirestore(initializeApp(FIREBASE_CONFIG));
+        const col = collection(db, 'guestbook');
+        onSnapshot(
+          query(col, orderBy('createdAt', 'desc'), limit(200)),
+          (snap) =>
+            render(
+              snap.docs.map((d) => {
+                const v = d.data({ serverTimestamps: 'estimate' });
+                return {
+                  name: v.name,
+                  text: v.text,
+                  ts: v.createdAt ? v.createdAt.toMillis() : Date.now(),
+                };
+              }),
+            ),
+          () => {
+            statusEl.textContent = 'Không tải được lời nhắn lúc này.';
+          },
+        );
+        store = (name, text) => addDoc(col, { name, text, createdAt: serverTimestamp() });
+      } else {
+        // Chế độ thử: chưa cấu hình Firebase nên chỉ lưu trên máy này
+        const KEY = 'gb_local';
+        const read = () => {
+          try {
+            return JSON.parse(localStorage.getItem(KEY)) || [];
+          } catch (e) {
+            return [];
+          }
+        };
+        render(read());
+        statusEl.textContent = 'Chế độ thử: chưa kết nối Firebase, lời nhắn chỉ lưu trên máy này.';
+        store = async (name, text) => {
+          const arr = read();
+          arr.unshift({ name, text, ts: Date.now() });
+          try {
+            localStorage.setItem(KEY, JSON.stringify(arr.slice(0, 200)));
+          } catch (e) {}
+          render(arr);
+        };
+      }
+
+      textEl.addEventListener('input', () => {
+        $('gbCount').textContent = textEl.value.length + '/300';
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if ($('gbWebsite').value) return; // bẫy bot
+        const text = textEl.value.trim().slice(0, 300);
+        const name = (nameEl.value.trim() || 'Ẩn danh').slice(0, 30);
+        if (!text) return;
+        let last = 0;
+        try {
+          last = Number(localStorage.getItem('gb_last')) || 0;
+        } catch (err) {}
+        const wait = COOLDOWN - (Date.now() - last);
+        if (wait > 0) {
+          statusEl.textContent = `Chờ ${Math.ceil(wait / 1000)} giây rồi gửi tiếp nhé.`;
+          return;
+        }
+        sendBtn.disabled = true;
+        gbPage = 1;
+        try {
+          await store(name, text);
+          try {
+            localStorage.setItem('gb_last', String(Date.now()));
+          } catch (err) {}
+          textEl.value = '';
+          $('gbCount').textContent = '0/300';
+          statusEl.textContent = configured ? 'Đã gửi. Cảm ơn bạn ♡' : 'Đã lưu thử trên máy này ♡';
+        } catch (err) {
+          statusEl.textContent = 'Gửi chưa được, bạn thử lại sau nhé.';
+        }
+        sendBtn.disabled = false;
+      });
     </script>
   </body>
 </html>
